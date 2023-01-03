@@ -1,0 +1,615 @@
+{% extends 'layout/layout.html' %}
+{%load static%}
+
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1 질문하기</title>
+<style>
+    a{
+        text-decoration: none;
+        color: #333;
+    }
+    .main1{
+        margin-bottom: 70px;
+        margin-top: 52px;
+        font-size: 23px; 
+        margin-left: 112px;
+    }
+
+    .form-select{
+        padding: 18px 20px;
+        border-radius: 6px;
+        border: 1px solid rgb(229, 229, 229);
+        background: url(/static/media/icon-ic-chevron-down.51cc26c1.svg) right 9px center no-repeat;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: rgb(178, 178, 178);
+        width: 100%;
+    }
+    .main2 {
+        padding-top: 50px;
+        width: 100%;
+        max-width: 640px;
+        position: relative;
+        margin: 0 auto;
+    }
+    .main1_2 {
+        display: inline;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3.25rem;
+        flex-direction: column;
+        box-sizing: border-box;
+        margin: 0px auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        max-width: 75rem;
+    }
+    .clear {
+        clear: both;
+    }
+
+    ul{
+        list-style: none;
+        display: inline-block;
+    }
+    li{
+        float: left;
+        margin-right: 52px;
+        font-weight:bold;
+        font-size: 20px;
+    }
+    .main3{
+        margin-left: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    .main3-1{
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .main3-2 {
+        margin-top: 26px;
+        margin-left: 5px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: rgb(25, 25, 25);
+        position: relative;
+    }
+    .main2-1{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+        margin-left: 16px;
+    }
+
+    .main2-2 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: rgb(25, 25, 25);
+    position: relative;
+    margin-bottom: 22px;
+    margin-left: 3px;
+    }
+
+    .main3-3{
+    resize: none;
+    outline: none;
+    padding: 16px 16px 90px;
+    border-radius: 6px;
+    background-color: rgb(250, 250, 250);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: rgb(51, 51, 51);
+    }
+    .main4{
+    margin: 0px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    }
+    .main4-1 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    
+    }
+    .main4-2{
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: rgb(25, 25, 25);
+    position: relative;
+    margin-top: -53px;
+    }
+    .main4-3{
+    margin-top: 8px;
+    }
+    .picture{
+    display: flex;
+    flex-direction: column;
+    }
+    .picture1{
+    display: flex;
+    margin-top: 12px;
+    }
+    .picture2{
+    position: relative;
+    }
+    .picture3{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    border: 1px solid rgb(229, 229, 229);
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-pack: center;
+    place-content: center;
+    cursor: pointer;
+    }
+    .picture4   {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin: 0px auto;
+    text-align: center;
+    }
+    .picture4 label img {
+    max-width: 100%;
+    width: 100%;
+    min-height: 1px;
+    }
+    .picture4 label{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    background: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    .picture5{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 0px;
+    }
+
+    .file-upload{
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    .file-upload label{
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 1;
+        background: rgb(255, 255, 255);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .file-upload label img{
+        max-width: 100%;
+        width: 100%;
+        min-height: 1px;
+    }
+
+    .flex-wrap1{
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-wrap2{
+        display: flex;
+        margin-top: 12px;
+    }
+    .flex-wrap3{
+        width: 22%;
+        margin-right: 3%;
+    }
+    .flex-wrap3::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+    }
+    .flex-wrap4{
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        border: 1px solid rgb(229, 229, 229);
+        box-sizing: border-box;
+        display: flex;
+        -webkit-box-pack: center;
+        place-content: center;
+        cursor: pointer;
+    }
+
+    .bAGyCr {
+        display: none;
+    }
+
+    input {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    input {
+        color: #1e1d29;
+        border: none;
+        outline: none;
+    }
+    .main4 {
+    width: calc(100% - 40px);
+    max-width: 600px;
+    margin: 0px auto 40px;
+    }
+    .main4-1 {
+    border: none;
+    margin: 0px;
+    overflow: visible;
+    font-family: SFProText, SFProDisplay, Arial;
+    line-height: normal;
+    box-sizing: border-box;
+    -webkit-font-smoothing: inherit;
+    appearance: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    color: rgb(255, 255, 255);
+    background: rgb(216, 12, 24);
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 110px;
+    margin-bottom: 93px;
+    align-items: center;
+
+
+    }
+    button {
+    padding: 0;
+    background: none;
+    border: none;
+    outline: 0;
+}
+
+.jdexSt {
+    flex: 1 1 0%;
+    position: relative;
+}
+
+.fBEkVD {
+    display: flex;
+    width: 856px;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+}
+
+ul,li {
+    padding : 0;
+    margin: 0;
+}
+
+.kCCNcG {
+    width: 170px;
+    height: 170px;
+    position: relative;
+    border: 1px solid rgb(230, 229, 239);
+    background: rgb(250, 250, 253);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-direction: column;
+    color: rgb(155, 153, 169);
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+.fBEkVD li:nth-last-child(-n+4):nth-child(4n+1), .fBEkVD li:nth-last-child(-n+4):nth-child(4n+1) ~ li {
+    margin-bottom: 0px;
+}
+
+.kCCNcG::before {
+    content: "";
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICAgIDxwYXRoIGZpbGw9IiNEQ0RCRTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTI4LjQ3MSAzMkgzLjUzYy0uOTcxIDAtMS44OTQtLjQyMi0yLjUyOS0xLjE1N2wtLjAyNi0uMDNBNCA0IDAgMCAxIDAgMjguMTk4VjguNjA3QTQgNCAwIDAgMSAuOTc0IDUuOTlMMSA1Ljk2YTMuMzQzIDMuMzQzIDAgMCAxIDIuNTI5LTEuMTU2aDIuNTM0YTIgMiAwIDAgMCAxLjUzNy0uNzJMMTAuNC43MkEyIDIgMCAwIDEgMTEuOTM3IDBoOC4xMjZBMiAyIDAgMCAxIDIxLjYuNzJsMi44IDMuMzYzYTIgMiAwIDAgMCAxLjUzNy43MmgyLjUzNGMuOTcxIDAgMS44OTQuNDIzIDIuNTI5IDEuMTU3bC4wMjYuMDNBNCA0IDAgMCAxIDMyIDguNjA2djE5LjU5MWE0IDQgMCAwIDEtLjk3NCAyLjYxN2wtLjAyNi4wM0EzLjM0MyAzLjM0MyAwIDAgMSAyOC40NzEgMzJ6TTE2IDkuNmE4IDggMCAxIDEgMCAxNiA4IDggMCAwIDEgMC0xNnptMCAxMi44YzIuNjQ3IDAgNC44LTIuMTUzIDQuOC00LjhzLTIuMTUzLTQuOC00LjgtNC44YTQuODA1IDQuODA1IDAgMCAwLTQuOCA0LjhjMCAyLjY0NyAyLjE1MyA0LjggNC44IDQuOHoiLz4KPC9zdmc+Cg==);
+    margin-bottom: 1rem;
+}
+
+.kCCNcG input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 0px;
+}
+</style>
+</head>
+<body>
+    <div id="layout">
+        <main class="main1">
+          <h1 class="main1_1">
+            1 : 1 질문하기
+          </h1></main>
+          <div class="main1_2">
+            <ul class="main1_3">
+              <li class="sub1">
+                <a class="sub1_1" href="/consumer/">자주 묻는 질문</a>
+              </li>
+              <li class="sub1">
+                <a class="sub1_1" href="/question/">1:1 문의</a>
+              </li>
+            </ul>
+            </div>
+        <div class="main2">
+            <div class="main2-1">
+                <div class="main2-2">
+                    유형 선택
+                </div>
+            </div>
+            <form action="/question/result/" method="post" enctype="multipart/form-data" name="qna_form">
+                {%csrf_token%}
+                <select class="form-select" aria-label="Default select example" name="qa_kind_idx">
+                    <option selected value="0">유형을 선택해주세요</option>
+                    <option value="1">거래신고</option>
+                    <option value="2">회원/계정</option>
+                    <option value="3">뚜벅페이(안전결제)</option>
+                    <option value="4">프로상점 서비스</option>
+                    <option value="5">판매광고</option>
+                    <option value="6">오류/신고/제안</option>
+                    <option value="7">기타 서비스</option>
+                </select>
+                <div class="main3">
+                    <div class="main3-1">
+                        <div class="main3-2">
+                            문의 내용
+                        </div>
+                    </div>
+                    <textarea class="main3-3" name="content" id="content" placeholder="문의 내용을 자세히 입력해주세요" cols="30" rows="10"></textarea>
+                </div>
+            <div class="main3">
+                <div class="">
+                    <div class="main4-2" id="insert_picture">
+                        사진첨부(0/5)
+                    </div>
+                    <div class="main4-3">
+                        사진을 첨부하면 답변을 받을 수 있어요.
+                    </div>
+                </div>
+                <div class="flex-wrap1">
+                    <div class="flex-wrap2">
+                        <ul class="fBEkVD" id="att_zone">
+                            <li class="kCCNcG" id="image_preview">
+                                이미지 등록
+                                <input type="file" name="files" id='btnAtt' accept="image/jpg, image/jpeg, image/png" multiple="">
+                            </li>
+                        </ul>
+                        <!-- <div class="flex-wrap3">
+                            <div class="flex-wrap4">
+                                <input type="file" accept="image/jpg, image/jpeg, image/png" id="btnatt" class="sc-fnebDD bAGyCr">
+                                <div class="file-upload">
+                                    <label for="input-file">
+                                        <img id="att_zone" src="https://help.bunjang.co.kr/static/media/icon-ic-plus.c86dceaa.svg" alt="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-wrap3">
+                            <div class="flex-wrap4">
+                                <input type="file" accept="image/jpg, image/jpeg, image/png" id="input-file" class="sc-fnebDD bAGyCr">
+                                <div class="file-upload">
+                                    <label for="input-file">
+                                        <img src="https://help.bunjang.co.kr/static/media/icon-ic-plus.c86dceaa.svg" alt="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-wrap3">
+                            <div class="flex-wrap4">
+                                <input type="file" accept="image/jpg, image/jpeg, image/png" id="input-file" class="sc-fnebDD bAGyCr">
+                                <div class="file-upload">
+                                    <label for="input-file">
+                                        <img src="https://help.bunjang.co.kr/static/media/icon-ic-plus.c86dceaa.svg" alt="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-wrap3">
+                            <div class="flex-wrap4">
+                                <input type="file" accept="image/jpg, image/jpeg, image/png" id="input-file" class="sc-fnebDD bAGyCr">
+                                <div class="file-upload">
+                                    <label for="input-file">
+                                        <img src="https://help.bunjang.co.kr/static/media/icon-ic-plus.c86dceaa.svg" alt="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-wrap3">
+                            <div class="flex-wrap4">
+                                <input type="file" accept="image/jpg, image/jpeg, image/png" id="input-file" class="sc-fnebDD bAGyCr">
+                                <div class="file-upload">
+                                    <label for="input-file">
+                                        <img src="https://help.bunjang.co.kr/static/media/icon-ic-plus.c86dceaa.svg" alt="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="main4">
+                    <button color="primary" type="button" class="main4-1" onclick="checkForm()">문의하기</button>
+                </div>
+            </form>
+        </div>
+</body>
+<script>
+    ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+    imageView = function imageView(att_zone, btn){
+    
+        var attZone = document.getElementById(att_zone);
+        var btnAtt = document.getElementById(btn)
+        var sel_files = [];
+        
+        // 이미지와 체크 박스를 감싸고 있는 div 속성
+        var div_style = 'width: 170px;height: 170px;margin-right: 1rem;'
+                      + 'list-style-type: none;display: flex;cursor: pointer;border: 1px solid rgb(195, 194, 204);margin-bottom:10px';
+        // 미리보기 이미지 속성
+        var img_style = 'width:100%;height:100%;';
+        // 이미지안에 표시되는 체크박스의 속성
+        var chk_style = 'padding:0;width: 1.5rem;height: 1.5rem;background-position: center center;background-repeat: no-repeat;background-size: 12px 12px;'
+                        +'background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYuODQ4IDZsMy43NzYtMy43NzZhLjYuNiAwIDEgMC0uODQ4LS44NDhMNiA1LjE1IDIuMjI0IDEuMzc2YS42LjYgMCAwIDAtLjg0OC44NDhMNS4xNTIgNiAxLjM3NiA5Ljc3NWEuNi42IDAgMSAwIC44NDguODQ5TDYgNi44NDhsMy43NzYgMy43NzZhLjU5OC41OTggMCAwIDAgMS4wMjQtLjQyNS42LjYgMCAwIDAtLjE3Ni0uNDI0TDYuODQ4IDZ6IiBvcGFjaXR5PSIuNjQiLz4KPC9zdmc+Cg==);'
+                        +'background-color: rgba(30, 29, 41, 0.32);border-radius: 50%;position: absolute;margin-top: 5px;margin-left: 138px;'
+      
+        btnAtt.onchange = function(e){
+          var files = e.target.files;
+          var fileArr = Array.prototype.slice.call(files)
+          for(f of fileArr){
+            imageLoader(f);
+          }
+        }  
+        
+      
+        // 탐색기에서 드래그앤 드롭 사용
+        attZone.addEventListener('dragenter', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+        }, false)
+        
+        attZone.addEventListener('dragover', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          
+        }, false)
+      
+        attZone.addEventListener('drop', function(e){
+          var files = {};
+          e.preventDefault();
+          e.stopPropagation();
+          var dt = e.dataTransfer;
+          files = dt.files;
+          for(f of files){
+            imageLoader(f);
+          }
+          
+        }, false)
+        
+    
+        
+        /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+        imageLoader = function(file){
+          sel_files.push(file);
+          var reader = new FileReader();
+          reader.onload = function(ee){
+            let img = document.createElement('img')
+            img.setAttribute('style', img_style)
+            img.src = ee.target.result;
+            attZone.appendChild(makeDiv(img, file));
+          }
+          
+          reader.readAsDataURL(file);
+        }
+        
+        /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
+        makeDiv = function(img, file){
+          var div = document.createElement('div')
+          div.setAttribute('style', div_style)
+          
+          var btn = document.createElement('input')
+          btn.setAttribute('type', 'button')
+          btn.setAttribute('value', '')
+          btn.setAttribute('delFile', file.name);
+          btn.setAttribute('style', chk_style);
+          btn.onclick = function(ev){
+            var ele = ev.srcElement;
+            var delFile = ele.getAttribute('delFile');
+            for(var i=0 ;i<sel_files.length; i++){
+              if(delFile== sel_files[i].name){
+                sel_files.splice(i, 1);      
+              }
+            }
+            
+            dt = new DataTransfer();
+            for(f in sel_files) {
+              var file = sel_files[f];
+              dt.items.add(file);
+            }
+            btnAtt.files = dt.files;
+            var p = ele.parentNode;
+            attZone.removeChild(p)
+          }
+          div.appendChild(img)
+          div.appendChild(btn)
+          return div
+        }
+      }
+    )('att_zone', 'btnAtt')
+
+    function checkForm(){
+        console.log('checkbox실행')
+        console.log(document.qna_form.qa_kind_idx)
+        console.log(document.qna_form.content)
+        if(document.qna_form.qa_kind_idx.value == 0){
+            console.log('분류미설정')
+            alert("제목을 입력하십시오!");
+        }else if(document.qna_form.content.value == ''){
+            alert("내용을 입력하십시오!")
+        }else{
+            alert("제출되었어요!")
+        }
+    
+    }
+    
+</script>
+</html>
+{%endblock%}
